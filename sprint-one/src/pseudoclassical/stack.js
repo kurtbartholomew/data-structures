@@ -1,4 +1,4 @@
-var Stack = function() {
+var Stack = function() { this.isBroken=true;
   this.storage = {};
   this.index = 0;
 };
