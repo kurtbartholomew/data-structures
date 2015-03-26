@@ -28,3 +28,6 @@ Queue.constructor.queueMethods.dequeue = function() {
 Queue.constructor.queueMethods.size = function() {
   return this.end - this.front;
 };
+
+
+
