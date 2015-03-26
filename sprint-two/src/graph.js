@@ -46,11 +46,12 @@ Graph.prototype.removeEdge = function(fromNodeValue, toNodeValue){
     delete this.getNode(fromNodeValue).edges[toNodeValue];
     this.removeEdge(toNodeValue,fromNodeValue);
   }
-  //this.getNode(fromNodeValue).edges.indexOf(toNodeValue)
 };
 
-Graph.prototype.forEachNode = function(cb){
-
+Graph.prototype.forEachNode = function( func ){
+  _.each(this.storage, function(node){
+    func(node.value);
+  });
 };
 
 var graphNode = function( value ){
@@ -61,13 +62,13 @@ var graphNode = function( value ){
 };
 /*
  * Complexity: What is the time complexity of the above functions?
- * addNode :
- * contains :
- * removeNode :
- * hasEdge :
- * addEdge :
- * removeEdge :
- * forEachNode :
+ * addNode : constant
+ * contains : linear
+ * removeNode : linear
+ * hasEdge : linear
+ * addEdge : linear
+ * removeEdge : linear
+ * forEachNode : linear
  *
  */
 
