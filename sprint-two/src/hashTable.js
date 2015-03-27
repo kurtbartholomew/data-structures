@@ -4,6 +4,9 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
+  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
+  //Make DOUBLE in size when storage > 75%
+  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
   var i = getIndexBelowMaxForKey(k, this._limit);
   if(this._storage[i]===undefined){
     this._storage[i] = {};
@@ -19,6 +22,9 @@ HashTable.prototype.retrieve = function(k){
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
   this._storage[i][k] = null;
+  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
+  //Make HALF in Size when storage < 25%
+  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
 };
 
 

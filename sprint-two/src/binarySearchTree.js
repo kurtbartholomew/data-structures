@@ -3,6 +3,7 @@ var BinarySearchTree = function(value){
   bst.value = value;
   bst.left = null;
   bst.right = null;
+
   return bst;
 };
 
@@ -45,6 +46,10 @@ bstMethods.depthFirstLog = function(callback) {
   } else if(this.right){
     this.right.depthFirstLog(callback);
   }
+};
+
+bstMethods.breadthFirstLog = function( callback ) {
+  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
 };
 
 /*

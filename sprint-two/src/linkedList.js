@@ -8,15 +8,51 @@ var LinkedList = function(){
     var newTail = linkedListNode(value);
     if(oldTail !== null) {
       oldTail.next =  newTail;
+      newTail.previous = oldTail;
     } else {
       this.head = newTail;
     }
     this.tail = newTail;
   };
 
+  // ==================================================
+  // Extra Credit
+
+
+  list.removeTail = function() {
+    if(this.head !== null && this.tail !== null) {
+      var tailValue = this.tail.value;
+      if(this.head !== this.tail) {
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+      } else {
+        this.head = null;
+        this.tail = null;
+      }
+      return tailValue;
+    }
+  };
+
+  list.addToHead = function(value){
+    var oldHead = this.head;
+    var newHead = linkedListNode(value);
+    if(oldHead !== null) {
+      oldHead.previous = newHead;
+      newHead.next = oldHead;
+    } else {
+      this.tail = newHead;
+    }
+    this.head = newHead;
+  };
+
+  // =================================================
+
   list.removeHead = function(){
     var headValue = this.head.value;
     this.head = this.head.next;
+    if(this.head!==null){
+      this.head.previous = null;
+    }
     return headValue;
   };
 
@@ -42,6 +78,7 @@ var linkedListNode = function(value){
 
   nodeInstance.value = value;
   nodeInstance.next = null;
+  nodeInstance.previous = null;
 
   return nodeInstance;
 };

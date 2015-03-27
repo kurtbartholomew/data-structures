@@ -51,5 +51,29 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  // add more tests here to test the functionality of linkedList
+  it('should not show a tail node after it has been removed', function(){
+    linkedList.addToTail(3);
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    linkedList.removeTail();
+
+    expect(linkedList.contains(6)).to.equal(false);
+  });
+
+  it('should be able to remove all elements with removeTail', function(){
+    linkedList.addToTail(1);
+    linkedList.removeTail();
+
+    expect(linkedList.contains(1)).to.equal(false);
+  });
+
+  it('should find the latest value added to the head in currentHead\'s value', function(){
+    linkedList.addToTail(4);
+    linkedList.addToTail(3);
+    linkedList.addToHead(2);
+    linkedList.addToHead(1);
+
+    expect(linkedList.head.value).to.equal(1);
+  });
 });
