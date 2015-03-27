@@ -40,5 +40,47 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  it('should seperate a child node from a tree', function(){
+    tree.addChild(1);
+    tree.addChild(9001);
+    tree.addChild('potato');
+    tree.addChild(Math.infinity);
 
+    //[1,9001,"potato",infinity]
+
+    var child=tree.children[0];
+    child.addChild('another thing');
+
+    child.removeFromParent();
+
+    //[9001,"potato",infinity]
+
+    expect(tree.children[0].value).to.equal(9001);
+    expect(child.parent).to.equal(null);
+
+  });
+
+  it('should be able to iterate over every element recursively using tree.traverse', function(){
+    var array=[];
+
+    tree.addChild(1);
+    tree.addChild(2);
+    tree.addChild(3);
+    tree.children[0].addChild(4);
+    tree.children[1].addChild(5);
+    tree.children[2].addChild(6);
+
+    var callBack=function( node ){
+      array.push( node.value );
+    };
+
+    tree.traverse(callBack);
+
+    var expectedResult=[null,1,4,2,5,3,6];
+
+    expect(_.every(array,function(value,key) {
+      return expectedResult[key]===value;
+    }) && array.length>0).to.equal(true);
+
+  });
 });
