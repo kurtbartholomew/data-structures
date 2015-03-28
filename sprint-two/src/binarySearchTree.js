@@ -1,25 +1,36 @@
+var bstMethods = {};
+
 var BinarySearchTree = function(value){
   var bst = Object.create(bstMethods);
   bst.value = value;
   bst.left = null;
   bst.right = null;
 
+  bst.head = bst;
+  bst.index = 0;
+  bst.nodes = [];
+  bst.nodes[0] = bst;
+
   return bst;
 };
-
-var bstMethods = {};
 
 bstMethods.insert = function(value) {
   if (value<this.value) {
     if(this.left===null) {
-      this.left = BinarySearchTree(value);
+      this.left = new BinarySearchTree(value);
+      this.left.index=(this.index+1)*2 -1;
+      this.left.head=this.head;
+      this.head.nodes[this.left.index]=this.left;
     } else {
       this.left.insert(value);
     }
   }
   if (value>this.value) {
     if(this.right===null) {
-      this.right = BinarySearchTree(value);
+      this.right = new BinarySearchTree(value);
+      this.right.index=(this.index+1)*2;
+      this.right.head=this.head;
+      this.head.nodes[this.right.index]=this.right;
     } else {
       this.right.insert(value);
     }
@@ -49,7 +60,9 @@ bstMethods.depthFirstLog = function(callback) {
 };
 
 bstMethods.breadthFirstLog = function( callback ) {
-  //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//
+  for(var i=0; i<this.nodes.length; i++){
+    callback(this.nodes[i].value);
+  }
 };
 
 /*
