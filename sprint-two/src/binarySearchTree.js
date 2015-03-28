@@ -1,3 +1,4 @@
+
 var bstMethods = {};
 
 var BinarySearchTree = function(value){
